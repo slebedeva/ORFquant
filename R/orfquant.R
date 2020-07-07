@@ -321,6 +321,7 @@ calc_orf_pval<-function(ORFs,P_sites_rle,P_sites_uniq_rle,P_sites_uniq_mm_rle,cu
     ORFs$P_sites_raw_uniq<-NA
     ORFs$P_sites_raw_uniq_mm<-NA
     ORFs$pct_fr<-NA
+    ORFs$spec<-NA
     
     
     for(i in 1:length(ORFs)){
@@ -347,6 +348,7 @@ calc_orf_pval<-function(ORFs,P_sites_rle,P_sites_uniq_rle,P_sites_uniq_mm_rle,cu
                 if(length(psit)>=25){slepians<-dpss(n=length(psit),k=tapers,nw=bw)}
                 vals<-take_Fvals_spect(x = psit,n_tapers = tapers,time_bw = bw,slepians_values = slepians)
                 ORFs$pval[i]<-pf(q=vals[1],df1=2,df2=(2*24)-2,lower.tail=F)
+                ORFs$spec[i]<- vals[2]
                 vals<-take_Fvals_spect(x = psit_uniq,n_tapers = tapers,time_bw = bw,slepians_values = slepians)
                 ORFs$pval_uniq[i]<-pf(q=vals[1],df1=2,df2=(2*24)-2,lower.tail=F)
                 
